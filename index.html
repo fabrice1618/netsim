@@ -1,69 +1,47 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="fr">
   <head>
-  	<meta charset="utf-8"> 
-    <title>Netsim</title>
-    <script type="text/javascript" src="dist/networksim.min.js"></script>
-    <script type="text/javascript">
-
-
-
-
-function init() 
-{
-    var loader = new ImageLoader(
-    ["img/64/switch.png", 
-        "img/64/router2.png", 
-        "img/64/computer.png", 
-        "img/64/server_web.png", 
-        "img/64/server_dns.png", 
-        "img/64/server_dhcp.png", 
-        "img/64/envelope-DHCP.png", 
-        "img/64/envelope-DNS.png", 
-        "img/64/envelope-HTTP.png",
-        "img/64/envelope-ICMP.png"], 
-    simulator
-    );
-    loader.load();
-}
-</script>
-    <meta content="">
-    <style>
-
-
-
-
-html, body
-{
-    margin: 0;
-    padding: 0;
-    width:2048px;
-    font-family: "Times New Roman", Times, serif;
-}
-
-table
-{
-    border: 1px solid black;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th
-{
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-fieldset
-{
-    font-size: 0.8em;
-}
-</style>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NetSim v2 - Network Simulator</title>
+    <meta name="description" content="Simulateur réseau éducatif moderne avec Vue 3" />
+    
+    <!-- Pré-chargement des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   </head>
-  <body onload="init();" >
-    <div id="simcontainer" style="float:right;width:2048px; height:1024px;">
-      <canvas id="simcanvas" style="width:2048px; height:1024px;" />
+  <body>
+    <div id="loading" class="loading-screen">
+      <div class="loading-logo">
+        <svg width="40" height="40" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+        </svg>
+      </div>
+      <div class="loading-text">NetSim v2</div>
+      <div class="loading-subtitle">Chargement du simulateur réseau...</div>
+      <div class="loading-spinner"></div>
     </div>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      window.NetworkSimulator = {
+        initialdata: null,
+        verbose: false
+      };
+      // Masquer l'écran de chargement une fois Vue monté
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.body.classList.add('app-loaded');
+          setTimeout(() => {
+            const loading = document.getElementById('loading');
+            if (loading) {
+              loading.remove();
+            }
+          }, 500);
+        }, 1000);
+      });
+    </script>
   </body>
 </html>

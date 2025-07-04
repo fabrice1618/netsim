@@ -1,50 +1,18 @@
-/*
- * This file is part of the Education Network Simulator project and covered 
- * by GPLv3 license. See full terms in the LICENSE file at the root folder
- * or at http://www.gnu.org/licenses/gpl-3.0.html.
- * 
- * (c) 2015 Jorge García Ochoa de Aspuru
- * bardok@gmail.com
- * 
- * Images are copyrighted by their respective authors and have been 
- * downloaded from http://pixabay.com/
- * 
- */
-
-var ImageLoader = function(filearray, callback)
+function init() 
 {
-  var filearray = filearray;
-  var loadedImages = [];
-  var next = 0;
-  var callback = callback;
-  
-  function internalLoad()
-  {
-    if (next < filearray.length)
-    {
-      var pos = next;
-      next++;
-      var img = new Image();
-      loadedImages.push(img);
-      img.onload = function()
-      {
-	internalLoad();
-      };
-      img.src = filearray[pos];
-    }
-    else
-    {
-      callback(loadedImages);
-    }
-  }
-  
-  this.getLoadedImages = function ()
-  {
-    return this.loadedImages;
-  };
-  
-  this.load = function()
-  {
-    internalLoad();
-  };
-};
+    var loader = new ImageLoader(
+    ["img/64/switch.png", 
+    "img/64/router2.png", 
+    "img/64/computer.png", 
+    "img/64/server_web.png", 
+    "img/64/server_dns.png", 
+    "img/64/server_dhcp.png", 
+    "img/64/envelope-DHCP.png", 
+    "img/64/envelope-DNS.png", 
+    "img/64/envelope-HTTP.png",
+    "img/64/envelope-ICMP.png"], 
+    simulator
+    );
+    console.log('ImageLoader initialized with images');
+    loader.load();
+}

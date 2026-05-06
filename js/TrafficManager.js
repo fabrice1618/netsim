@@ -548,6 +548,11 @@ var TrafficManager = function(connectable, limitbroadcast, performNAT)
           {
               addDiagnosticInfo("Unknown domain: " + dst);
           }
+          else if (connectable.compatibleIP(dstip, false))
+          {
+              addDiagnosticInfo(_("Sending ping to: ") + dstip);
+              addDiagnosticInfo(_("Ping response recieved from ") + dstip);
+          }
           else
           {
               // Crear un mensaje de tipo ICMP
@@ -599,6 +604,11 @@ var TrafficManager = function(connectable, limitbroadcast, performNAT)
         if (dstip === null)
         {
             addDiagnosticInfo("Unknown domain: " + dst);
+        }
+        else if (connectable.compatibleIP(dstip, false))
+        {
+            addDiagnosticInfo(_("Sending traceroute to: ") + dstip);
+            addDiagnosticInfo("1" + _(" - Traceroute to ") + dstip + ": " + dstip);
         }
         else
         {

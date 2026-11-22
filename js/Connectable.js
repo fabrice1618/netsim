@@ -117,8 +117,9 @@ var Connectable = function(c_owner, macmode, ipmode, limitbroadcast, performNAT)
             if (ipinfo.getIPv4() != null)
             {
               result = ipinfo.sameNetwork(ip);
-              i++;              
             }
+            // Siguiente interfaz, aunque ésta no tenga IP (si no, bucle infinito)
+            i++;
         }
 
         return result;

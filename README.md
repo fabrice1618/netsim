@@ -1,6 +1,6 @@
 # Utilisation Netsim
 
-URL: https://fabrice1618.github.io/netsim3/
+URL: https://fabrice1618.github.io/netsim/
 
 ## Interface
 
